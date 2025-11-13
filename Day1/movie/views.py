@@ -24,7 +24,7 @@ def redis_lab(request): # query view fragment template
 
 
 # Create your views here.
-def listing(request):
+# def listing(request):
     # This is N+1 because of Foreign Key
     # ratings = Rating.objects.all()
     # html = "<ul>"
@@ -123,7 +123,7 @@ def listing(request):
 # =====Lab3=====
 
 
-    pr = cProfile.Profile()
+    # pr = cProfile.Profile()
     # pr.enable()
 
 
