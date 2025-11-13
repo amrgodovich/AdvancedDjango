@@ -24,4 +24,5 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('movies/', listing),
     path('silk/', include('silk.urls', namespace='silk')),
+    path('redis/', redis_lab),
 ]

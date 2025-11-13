@@ -4,6 +4,24 @@ from django.db import connection
 from django.db.models import Q, F
 import time
 import cProfile, pstats, io
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from silk.profiling.profiler import silkprofile
+
+@cache_page(60*5)  
+# @silkprofile()
+def redis_lab(request): # query view fragment template
+    #query
+    cache_key = 'movie_count'
+    movie_count = cache.get(cache_key)
+
+    if movie_count is None:
+        movie_count = Movie.objects.count()
+        cache.set(cache_key, movie_count, timeout=300)
+
+    return render(request, 'movie/movies.html', {'data': movie_count})
+
+
 
 # Create your views here.
 def listing(request):
