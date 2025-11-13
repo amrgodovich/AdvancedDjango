@@ -22,7 +22,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('movies/', listing),
+    # path('movies/', listing),
     path('silk/', include('silk.urls', namespace='silk')),
     path('redis/', redis_lab),
+    path('task/', calling_task),
 ]

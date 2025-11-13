@@ -3,10 +3,18 @@ from .models import *
 from django.db import connection
 from django.db.models import Q, F
 import time
-import cProfile, pstats, io
+# import cProfile, pstats, io
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
-from silk.profiling.profiler import silkprofile
+# from silk.profiling.profiler import silkprofile
+
+from django.http import HttpResponse
+from movie.tasks import task_hello,add
+
+def calling_task(request):
+    res=add(5,6)
+    task_hello.delay("Amr")
+    return HttpResponse(f"Task has been called!    result={res}")
 
 @cache_page(60*5)  
 # @silkprofile()

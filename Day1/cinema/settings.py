@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'movie',
     'django_extensions',
     'debug_toolbar',
-    'silk'
+    'silk',
+    'django_celery_beat',
 ]
 
 REST_FRAMEWORK = {
@@ -151,3 +152,9 @@ CACHES = {
         }
     }
 }
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'   # Redis as broker
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'  # Optional: store results
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
